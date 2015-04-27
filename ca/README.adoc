@@ -1,0 +1,38 @@
+= Certificate Authority
+
+== Prerequisites
+
+- OpenSSL
+
+TODO what version
+TODO clean this up
+TODO describe what a CA is, how it functions
+
+https://help.github.com/enterprise/11.10.340/admin/articles/using-self-signed-ssl-certificates/
+
+== Installing
+
+----
+TODO
+----
+
+== Creating a CA
+
+[source,bash]
+----
+TODO
+----
+
+== Creating a certificate
+
+[source,bash]
+----
+TODO
+----
+
+== Exporting a certificate
+
+[source,bash]
+----
+TODO
+----
