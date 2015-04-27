@@ -24,8 +24,8 @@ can securely connect to the server without having to enter the password every
 time.
 
 . Set up an IPSec channel between two systems.
-____
 
+____
 
 === Presentation
 
@@ -87,38 +87,124 @@ screenshots to illustrate the functioning of your systems.
 ** Instructions on how to run the code.
 
 ** Anything else you think is relevant.
+
 ____
 
 == Strategies
 
+This section discusses strategies we might employ to finish each part of the
+assignment.
+
 === Certificate authority
 
+This one doesn't need a server.
+
 Looks like there's an https://github.com/coreos/etcd-ca[easy tool] to do it by
-the CoreOS team. The hard part here is setting up a local site that uses it.
-I think we should setup a website on both the server and a local laptop that
-uses the CA-generated cert. Instead of dealing with webserver config, we could
-probably just create a Go binary that's got the key built in.
+the CoreOS team. We could probably create a single Go binary that serves
+a website using the pre-generated cert. This would be super easy.
 
 === VPN
 
-OpenVPN seems to be the big frontrunner here.
-https://github.com/kylemanna/docker-openvpn[Looks like] we can run it in Docker
-as well, which might be easier to manage.
+This one probably should have a server, but we can use
+a http://readwrite.com/2014/04/10/raspberry-pi-vpn-tutorial-server-secure-web-browsing[Raspberry
+Pi] (Ciaran has one spare).
 
 === SSH
 
-The SSH server will come running in a VPS environment. All we need to do is
-disable root and password logins and make sure the server has our pubkey. See
-Terradrone's
+Let's just use the RPi for this one. All we need to do is disable root and
+password logins and make sure the server has our pubkey. See Terradrone's
 https://github.com/ciarand/terradrone/blob/c211fc6c1859d8f9d4a049d5fd723cefc3d4170a/bootstrap.yml#L25-L40[bootstrap.yml].
+
 Oh, and restart it. That's important.
 
 === IPSec
 
 idk lol
 
+== Deployment
+
+=== Desktop / Laptop
+
+. Generate <<CA>> certs
+. Setup web site using <<CA>> generated cert
+
+=== Raspberry Pi / Server
+
+. Change <<SSH>> settings
+. Install <<VPN>>
+. Something something <<IPSec>>
+
+== Testing
+
+It would be really reassuring to have a set of automated tests we could run.
+Ideas welcome.
+
+== Documentation burndown list
+
+* [ ] Describe setting up password-less SSH
+
+* [ ] How to setup a CA server
+
+* [ ] How to setup a VPN server
+
+* [ ] How to setup an SSH server
+
+* [ ] How to setup an IPSec channel
+
+* [ ] Abstract
+
+* [ ] Introduction
+
+* [ ] Configuration
+
+** [ ] Description of CA system, how to configure it, how each component
+interacts with others
+
+** [ ] Diagram(s) of CA process
+
+** [ ] Description of VPN concept, explanation of OpenVPN
+
+** [ ] Diagram of OpenVPN access across public internet
+
+** [ ] OpenVPN config files
+
+** [ ] SSH description
+
+** [ ] SSH diagram
+
+** [ ] IPSec description
+
+** [ ] IPSec diagram
+
+* [ ] Security protocols
+
+** [ ] How do certificate authorities work?
+
+** [ ] How does SSH work?
+
+** [ ] How does VPN work?
+
+** [ ] How does IPSec work?
+
+* [ ] Testing and field evaluation
+
+** [ ] How did we test our CA?
+
+** [ ] How did we test our VPN?
+
+** [ ] How did we test our SSH server?
+
+** [ ] How did we test our IPSec channel?
+
+* [ ] Conclusion
+
+* [ ] Configuration files
+
+* [ ] Instructions on running the code
+
 == Resources
 
+- http://packetpushers.net/raspberry-pi-deliciously-simple-vpn-endpoint/
 - http://docs.ansible.com/
 - https://github.com/coreos/etcd-ca
 - http://www.hydrogen18.com/blog/your-own-pki-tls-golang.html
