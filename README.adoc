@@ -1,0 +1,128 @@
+= Crypography final (CPSC 433)
+
+== Assignment
+
+Quoted text is taken from the assignment, unquoted text is original art.
+
+=== Problem
+
+[quote]
+____
+Please complete *all* of the following:
+
+. Configure a system to function as a certificate authority. You may use any
+system. Set up a website (locally on your machine) which uses the services of
+your certificate authority. You may find the following link helpful:
+https://help.ubuntu.com/community/OpenSSL. Please note: you must actually set
+up your own authority; not simply purchase an SSL certificate from somewhere.
+
+. Set up and configure a Virtual Private Networking Server (VPN) server. You
+may find the following link helpful: https://help.ubuntu.com/community/OpenVPN.
+
+. Set up an SSH server. Describe how to configure the server such that the user
+can securely connect to the server without having to enter the password every
+time.
+
+. Set up an IPSec channel between two systems.
+____
+
+
+=== Presentation
+
+[quote]
+____
+If time permits, each group will give an in-class presentation. If the time
+does not permit, then please submit a video of your presentation or demo your
+project to the instructor. Please see the guidelines below:
+
+* Give 5-10 min presentation.
+
+* Show your systems in action.
+
+* Discuss how you set up and configured each type of server. What tools did you
+use? What configuration choices did you make? Why? Any challenges you
+encountered? Solutions?
+
+* What platform did you use? Anything else relevant?
+
+____
+
+=== Requirements
+
+[quote]
+____
+* A well written document clearly detailing your design. The document shall
+contain the following sections:
+
+** Abstract: a brief paragraph succinctly describing your project and its
+salient features.
+
+** Introduction: a section briefly describing the systems you set up and the
+underlying principles of their function.
+
+** Configuration: a section outlining the configuration of your systems e.g.
+system components, their interactions, different cases for which you configured
+your systems, etc. Use diagrams, snippets of configuration files, etc in order
+to illustrate your points.
+
+** Security Protocols: a section explaining the cryptographic protocols which
+make creation of SSL certificates, SSH, VPN, and IPSec possible.
+
+** Testing and Field Evaluation: Describe the tests you devised in order to
+evaluate the function of the systems you configured. What functionality was
+each test designed to evaluate? What were the results of each test? Did the
+results cause you to take any corrective actions? If so, then explain. Use
+screenshots to illustrate the functioning of your systems.
+
+* Conclusion: a section giving a brief recap of the project.
+
+* Configuration files (if any).
+
+* README file containing:
+
+** Names of group members.
+
+** Contributions of each member.
+
+** Instructions on how to run the code.
+
+** Anything else you think is relevant.
+____
+
+== Strategies
+
+=== Certificate authority
+
+Looks like there's an https://github.com/coreos/etcd-ca[easy tool] to do it by
+the CoreOS team. The hard part here is setting up a local site that uses it.
+I think we should setup a website on both the server and a local laptop that
+uses the CA-generated cert. Instead of dealing with webserver config, we could
+probably just create a Go binary that's got the key built in.
+
+=== VPN
+
+OpenVPN seems to be the big frontrunner here.
+https://github.com/kylemanna/docker-openvpn[Looks like] we can run it in Docker
+as well, which might be easier to manage.
+
+=== SSH
+
+The SSH server will come running in a VPS environment. All we need to do is
+disable root and password logins and make sure the server has our pubkey. See
+Terradrone's
+https://github.com/ciarand/terradrone/blob/c211fc6c1859d8f9d4a049d5fd723cefc3d4170a/bootstrap.yml#L25-L40[bootstrap.yml].
+Oh, and restart it. That's important.
+
+=== IPSec
+
+idk lol
+
+== Resources
+
+- http://docs.ansible.com/
+- https://github.com/coreos/etcd-ca
+- http://www.hydrogen18.com/blog/your-own-pki-tls-golang.html
+- https://raymii.org/s/tutorials/IPSEC_L2TP_vpn_with_Ubuntu_12.04.html
+- https://github.com/OpenVPN/easy-rsa
+- http://en.wikipedia.org/wiki/IPsec
+- http://andersonfam.org/2014/04/02/ipsec-transport-mode/
