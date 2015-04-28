@@ -97,11 +97,10 @@ assignment.
 
 === Certificate authority
 
-This one doesn't need a server.
-
-Looks like there's an https://github.com/coreos/etcd-ca[easy tool] to do it by
-the CoreOS team. We could probably create a single Go binary that serves
-a website using the pre-generated cert. This would be super easy.
+You need to have OpenSSL, GNU Make, and Go installed. Run `make rootca` to
+generate the required files. Run `make ca/server` to generate the server
+program. Run `./ca/server -address :8321 -keyfile ca/rootCA.key -certfile
+ca/rootCA.crt` and visit `https://127.0.0.1:8321`.
 
 === VPN
 
