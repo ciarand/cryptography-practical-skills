@@ -212,3 +212,5 @@ interacts with others
 - https://github.com/OpenVPN/easy-rsa
 - http://en.wikipedia.org/wiki/IPsec
 - http://andersonfam.org/2014/04/02/ipsec-transport-mode/
+- http://fastah.blackbuck.mobi/blog/securing-https-in-go/
+- https://www.imperialviolet.org/2014/12/08/poodleagain.html
