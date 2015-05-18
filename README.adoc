@@ -1,6 +1,11 @@
 = Crypography final (CPSC 433)
+Ciaran Downey <ciarand@csu.fullerton.edu>; Kourun Sok; Strat; Brian; Andrew
+
+TODO: emails
 
 == Authors
+
+TODO: fill out your names here
 
 - Ciaran Downey <ciarand@csu.fullerton.edu>
 - Kourun Sok
@@ -8,16 +13,15 @@
 - Brian
 - Andrew
 
-TODO: fill out your names here
+- CA configuration: Ciaran
+- CA server: Ciaran
+- SSH configuration: Ciaran
+- IPsec security protocols: Brian
 
-CA configuration: Ciaran
-CA server: Ciaran
-SSH configuration: Ciaran
-IPsec security protocols: Brian
-
-SSL security protocols:
-SSH security protocols:
-VPN security protocols:
+TODO:
+- SSL security protocols:
+- SSH security protocols:
+- VPN security protocols:
 
 == Abstract
 
@@ -66,7 +70,6 @@ This way we can configure any normal web server to use the certificate in HTTPS
 communication. We setup a simple HTTPS web server in Go to verify this. Here's
 the source:
 
-[source,go]
 ----
 include::ca/main.go[]
 ----
@@ -150,7 +153,7 @@ The cryptographic algorithms defined for use with IPSec include HMAC_SHA1/SHA2
 
 === Testing and Field Evaluation
 
-Describe the tests you devised in order to evaluate the function of the systems
+TODO: Describe the tests you devised in order to evaluate the function of the systems
 you configured. What functionality was each test designed to evaluate? What
 were the results of each test? Did the results cause you to take any corrective
 actions? If so, then explain. Use screenshots to illustrate the functioning of
