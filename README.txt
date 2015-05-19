@@ -12,7 +12,7 @@ Assuming you have a working Go toolchain in your `$PATH` (tested on Ubuntu
 go build -o server main.go
 ----
 
-And then `.server -help` for further instruction.
+And then `./server -help` for further instruction.
 
 == Authors
 
