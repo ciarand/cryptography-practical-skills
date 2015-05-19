@@ -24,9 +24,9 @@ Andrew Tsay <atsay714@gmail.com>
 
 == Contributions
 
-Ciaran: SSH settings, root CA, HTTPS server, documentation
-Kourun: SSH, OpenVPN, IPsec, documentation
-Strat:  Testing on OpenVPN and IPsec, documentation
-Brian:  IPsec writeup, documentation
+Kourun: SSH, OpenVPN, IPsec, documentation +
+Ciaran: SSH settings, root CA, HTTPS server, documentation +
+Strat:  Testing on OpenVPN and IPsec, documentation +
+Brian:  IPsec writeup, documentation +
 Andrew: VPN writeup
 
