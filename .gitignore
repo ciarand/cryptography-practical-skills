@@ -1,3 +1,5 @@
-ca/server
-ca/rootCA.crt
-ca/rootCA.key
+/server
+/rootCA.crt
+/rootCA.key
+/vendor/bundle
+/.bundle

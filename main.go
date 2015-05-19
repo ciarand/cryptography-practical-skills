@@ -16,8 +16,8 @@ func fire(args []string) (int, error) {
 	// setup some command line flags
 	var address, certfile, keyfile string
 	fset.StringVar(&address, "address", ":3003", "the address to listen on")
-	fset.StringVar(&keyfile, "keyfile", "rootCA.key", "the keyfile to use")
-	fset.StringVar(&certfile, "certfile", "rootCA.crt", "the certfile to use")
+	fset.StringVar(&keyfile, "keyfile", "host.key", "the keyfile to use")
+	fset.StringVar(&certfile, "certfile", "site.crt", "the certfile to use")
 
 	// attempt to parse the flags
 	if err := fset.Parse(args); err != nil {
@@ -44,7 +44,7 @@ func fire(args []string) (int, error) {
 func main() {
 	code, err := fire(os.Args)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "Fatal error encountered: "+err.Error())
+		fmt.Errorf("Fatal error encountered: %s", err.Error())
 	}
 
 	os.Exit(code)
