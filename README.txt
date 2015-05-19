@@ -3,8 +3,10 @@
 == Group name
 The Fighting Mongooses of Cryptography
 
-== Running the Go code
+== Document
+The document is in PDF form in the `document.pdf` file.
 
+== Running the Go code
 Assuming you have a working Go toolchain in your `$PATH` (tested on Ubuntu
 14.04 after running `sudo apt-get install -y golang`) you can run:
 
@@ -29,4 +31,21 @@ Ciaran: SSH settings, root CA, HTTPS server, documentation +
 Strat:  Testing on OpenVPN and IPsec, documentation +
 Brian:  IPsec writeup, documentation +
 Andrew: VPN writeup
+
+== Files
+
+- client_config.ovpn:          OpenVPN client config file
+- crypto_ssh_example_rsa:      Example RSA private key
+- crypto_ssh_example_rsa.pub:  Example RSA public key
+- host.crt:                    certificate for the HTTPS site
+- host.csr:                    certificate request for the HTTPS site
+- host.key:                    private key for the HTTPS site
+- ipsec.psk:                   Private Shared Key for IPsec
+- main.go:                     HTTPS server
+- rootCA.crt:                  certificate for our root CA
+- rootCA.key:                  key for our root CA
+- rootCA.srl:                  serial number file for our root CA
+- server.conf:                 OpenVPN server config file
+- sshd_config:                 OpenSSH config file
+- vars:                        vars file for easy-rsa
 
