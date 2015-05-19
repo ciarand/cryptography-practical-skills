@@ -1,168 +1,32 @@
 = Crypography final (CPSC 433)
-Ciaran Downey <ciarand@csu.fullerton.edu>; Kourun Sok; Strat; Brian; Andrew
 
-TODO: emails
+== Group name
+The Fighting Mongooses of Cryptography
+
+== Running the Go code
+
+Assuming you have a working Go toolchain in your `$PATH` (tested on Ubuntu
+14.04 after running `sudo apt-get install -y golang`) you can run:
+
+----
+go build -o server main.go
+----
+
+And then `.server -help` for further instruction.
 
 == Authors
 
-TODO: fill out your names here
+Ciaran Downey <ciarand@csu.fullerton.edu>;
+Kourun Sok <sokkourun@gmail.com>;
+Stratton Aguilar <strataguilar@csu.fullerton.edu>;
+Brian Brick <brianbrick@csu.fullerton.edu>;
+Andrew Tsay <atsay714@gmail.com>
 
-- Ciaran Downey <ciarand@csu.fullerton.edu>
-- Kourun Sok
-- Strat
-- Brian
-- Andrew
+== Contributions
 
-- CA configuration: Ciaran
-- CA server: Ciaran
-- SSH configuration: Ciaran
-- IPsec security protocols: Brian
+Ciaran: SSH settings, root CA, HTTPS server, documentation
+Kourun: SSH, OpenVPN, IPsec, documentation
+Strat:  Testing on OpenVPN and IPsec, documentation
+Brian:  IPsec writeup, documentation
+Andrew: VPN writeup
 
-TODO:
-- SSL security protocols:
-- SSH security protocols:
-- VPN security protocols:
-
-== Abstract
-
-Together the Fighting Mongooses of Cryptography have built a super fantastic
-package of applications that provide security over a wide variety of use cases.
-We've created our own root Certificate Authority (CA) and used it to sign our
-own TLS certificate so we can browse our own websites securely. We've setup our
-own VPN so we can securely link two computers with a private network, and we've
-setup IPsec so - when available - we can link all communications at the network
-level. Finally, we've also setup our own OpenSSH server so we can securely
-manage remote machines without opening any potential backdoors.
-
-== Features
-
-TODO: Four way of securely communicating over the network
-
-== Introduction
-
-TODO: A section briery describing the systems you set up and the underlying
-principles of their function.
-
-== Configuration
-
-TODO: A section outlining the configuration of your systems e.g. system
-components, their interactions, different cases for which you configured your
-systems, etc. Use diagrams, snippets of configuration files, etc. in order to
-illustrate your points.
-
-=== Certificate authority
-
-We used the following command to create a root CA certificate:
-
-----
-# generate root key
-openssl genrsa -out rootCA.key 2048
-----
-
-We then signed our new certificate (newcrt.crt), using the following command:
-
-----
-# sign new cert with root key
-openssl req -x509 -new -nodes -key rootCA.key -days 365 -out newcrt.crt
-----
-
-This way we can configure any normal web server to use the certificate in HTTPS
-communication. We setup a simple HTTPS web server in Go to verify this. Here's
-the source:
-
-----
-include::ca/main.go[]
-----
-
-=== SSH
-
-We used VirtualBox to run Ubuntu, which we setup with OpenSSH, our SSH server
-of choice. To do that we first installed OpenSSH:
-
-----
-----
-
-Then we adjusted our SSH config file: `/etc/ssh/sshd_config`
-
-----
-----
-
-Finally, we generated new SSH keys for each client that wanted to connect. The
-Windows users among us used PuTTY's key generation, while the *nix users among
-us used `ssh-keygen`. The defaults worked great for us, ask it generates an RSA
-key compatible with SSH version 2 (current).
-
-Once this was setup, we could connect to our new server. We retrieved the IP by
-using `ip addr` from the VM's shell.
-
-=== VPN
-
-TODO: Configuration for client and server +
-TODO: Each client needs unique key +
-TODO: (changed key size)
-
-=== IPsec
-
-== Security Protocols
-
-TODO: a section explaining the cryptographic protocols that make creation of SSL
-certificates, SSH, VPN, and IPSec possible.
-
-=== SSL / TLS
-
-=== SSH
-
-=== VPN
-
-=== IPsec
-
-Internet Protocol Security secures internet protocol communication by
-authenticating and encrypting each IP packet during host-to-host,
-network-to-host, or network-to-network traffic using either its transport or
-tunneling mode. IPSec supports network-level peer authentication, data origin
-authentication, data integrity, confidentiality, and replay protection. IPSec
-is an open standard that uses Authentication Headers, Encapsulating Security
-Payloads, and Security Associations protocols to perform various functions.
-
-Authentication Header protects the IP payload and all header fields (IPv4) of
-an IP datagram except for the mutable fields. It operates directly on top of IP
-using IP protocol number 51, and guarantees connectionless integrity, data
-origin authentication of IP packets, and replay protection using the sliding
-window technique and discarding old packets.
-
-Encapsulating Security Payload provides origin authenticity, integrity, and
-confidentiality of packets. It supports encryption only and authentication only
-configurations, but doesn’t provide integrity and authentication for the entire
-IP packet in transport mode like Authentication Header. Since tunnel mode
-encapsulates the entire IP packet with a new packet header, protection is
-provided for all encapsulated data. SEP operates using IP protocol number 50.
-
-To decide what protection to provide for an outgoing packet, IPSec uses the
-Security parameter index and the destination address in the packet header to
-identify the security association of the packet. Similarly, incoming packets
-are checked for the necessary decryption and verification keys from the
-Security Association Database. All security associations are established using
-the Internet Security Association and Key Management Protocol (ISKAMP) which is
-implemented by manual configuration using shared secrets, Internet Key Exchange
-(IKE and IKE2), Kerberized Internet Negotiation of Keys (KINK) and IPSECKEY DNS
-records.
-
-The cryptographic algorithms defined for use with IPSec include HMAC_SHA1/SHA2
-(integrity and authenticity), 3DES-CBC (confidentiality), AES-CBC
-(confidentiality), and AES-GCM (confidentiality and authentication).
-
-=== Testing and Field Evaluation
-
-TODO: Describe the tests you devised in order to evaluate the function of the systems
-you configured. What functionality was each test designed to evaluate? What
-were the results of each test? Did the results cause you to take any corrective
-actions? If so, then explain. Use screenshots to illustrate the functioning of
-your systems.
-
-=== Instructions on how to run the code.
-
-TODO: ciaran
-
-=== Conclusion
-
-TODO: a section giving a brief recap of the project.
